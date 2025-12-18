@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList, Cell } from 'recharts';
 import { OPMS_DATA } from '../constants';
@@ -6,9 +7,10 @@ import { AlertTriangle, TrendingDown, MousePointerClick } from 'lucide-react';
 
 interface TopUnavailableViewProps {
   onSelectOPM?: (opmName: string) => void;
+  onSelectReason?: (reasonName: string) => void;
 }
 
-const TopUnavailableView: React.FC<TopUnavailableViewProps> = ({ onSelectOPM }) => {
+const TopUnavailableView: React.FC<TopUnavailableViewProps> = ({ onSelectOPM, onSelectReason }) => {
   const top8Data = [...OPMS_DATA]
     .sort((a, b) => b.unavailable - a.unavailable)
     .slice(0, 8);
@@ -118,15 +120,23 @@ const TopUnavailableView: React.FC<TopUnavailableViewProps> = ({ onSelectOPM }) 
 
       {/* Context Section */}
       <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
-          <div className="flex items-center gap-2 mb-2">
-             <AlertTriangle className="w-5 h-5 text-indigo-500" />
-             <h3 className="font-bold text-slate-800">Contexto: Distribuição de Motivos (Corporação)</h3>
+          <div className="flex items-center justify-between mb-2">
+             <div className="flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5 text-indigo-500" />
+                <h3 className="font-bold text-slate-800">Contexto: Distribuição de Motivos (Corporação)</h3>
+             </div>
+             {onSelectReason && (
+               <div className="flex items-center gap-2 text-xs text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-100">
+                 <MousePointerClick className="w-4 h-4" />
+                 Clique nas barras para detalhar OPMs deste motivo
+               </div>
+             )}
           </div>
           <p className="text-sm text-slate-500 mb-6 max-w-3xl">
             O gráfico abaixo apresenta os principais motivos de indisponibilidade em toda a corporação. 
             Embora cada OPM tenha sua particularidade, estes são os fatores predominantes que impactam as unidades listadas acima.
           </p>
-          <ReasonChart />
+          <ReasonChart onSelectReason={onSelectReason} />
       </div>
     </div>
   );

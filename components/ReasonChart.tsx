@@ -3,7 +3,11 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from 'recharts';
 import { UNAVAILABLE_REASONS, CHART_COLORS } from '../constants';
 
-const ReasonChart: React.FC = () => {
+interface ReasonChartProps {
+  onSelectReason?: (reason: string) => void;
+}
+
+const ReasonChart: React.FC<ReasonChartProps> = ({ onSelectReason }) => {
   return (
     <div className="h-[400px] w-full">
       <ResponsiveContainer width="100%" height="100%">
@@ -27,7 +31,14 @@ const ReasonChart: React.FC = () => {
              cursor={{ fill: '#f8fafc' }}
              contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
           />
-          <Bar dataKey="count" name="Quantidade" radius={[0, 6, 6, 0]} barSize={28}>
+          <Bar 
+            dataKey="count" 
+            name="Quantidade" 
+            radius={[0, 6, 6, 0]} 
+            barSize={28}
+            onClick={(data) => onSelectReason && onSelectReason(data.reason)}
+            className={onSelectReason ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''}
+          >
             <LabelList 
               dataKey="count" 
               position="right" 

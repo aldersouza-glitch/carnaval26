@@ -179,7 +179,7 @@ const App: React.FC = () => {
         )}
 
         {activeTab === 'top-unavailable' && (
-          <TopUnavailableView onSelectOPM={handleSelectOPM} />
+          <TopUnavailableView onSelectOPM={handleSelectOPM} onSelectReason={handleSelectReason} />
         )}
 
         {activeTab === 'opm-details' && selectedOPM && (
