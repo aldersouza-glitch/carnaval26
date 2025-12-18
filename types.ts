@@ -2,6 +2,7 @@
 export interface OPMSData {
   name: string;
   available: number;
+  special: number;
   unavailable: number;
   total: number;
 }
@@ -37,11 +38,15 @@ export interface CommandRankData {
   total: number;
 }
 
-// Interface para detalhar nominalmente os itens dentro da categoria 'OUTROS'
-export interface OtherObservation {
+// Interface genérica para registros nominais de militares indisponíveis
+export interface PersonnelRecord {
   rank: string;
   name: string;
-  category: string;
+  reason: string;
   observation: string;
   opm: string;
+  category?: string;
 }
+
+// Mantendo para compatibilidade com código existente que usa o nome antigo
+export type OtherObservation = PersonnelRecord;
