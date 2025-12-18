@@ -1,0 +1,5 @@
+{
+  "name": "Personnel Readiness Dashboard",
+  "description": "A comprehensive dashboard visualizing personnel availability, rank breakdown, and unavailability reasons based on organizational data.",
+  "requestFramePermissions": []
+}
