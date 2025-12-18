@@ -14,27 +14,32 @@ export const CHART_COLORS = [
   '#1d4ed8', // Blue 700
 ];
 
-// Dados reais da planilha (Escala Interna) - Atualizado para novo Total de 369
+// Dados reais da planilha (Escala Interna)
 export const ESCALA_INTERNA_REAL_DISTRIBUTION: Record<string, number> = {
   'AJUDANCIA': 2,
-  'APM': 45, // Ajustado proporcionalmente ao crescimento da indisponibilidade da unidade
+  'APM': 48,
   'BPA': 31,
   'CFAP': 20,
   'CGCDHPC': 17,
   'CIA': 20,
   'COPEME': 2,
-  'CORREG': 40, // Ajustado
+  'CORREG': 43,
   'CPE': 1,
   'CPMC': 4,
   'DCS': 22,
   'DLOG': 30,
   'DPP': 6,
   'DPS': 1,
-  'DS': 78, // Ajustado
+  'DS': 72,
   'PM2': 9,
   'PM5': 12,
   'PMP': 15,
   'PROERD': 14
+};
+
+// Dados REAIS e EXATOS da aba OUTROS (Conforme imagem enviada de 46 casos)
+export const OUTROS_REAL_DISTRIBUTION: Record<string, number> = {
+  'BPA': 9, 'CPE': 8, 'DP': 6, 'CFAP': 5, 'CORREG': 3, 'DLOG': 3, 'CIA': 2, 'DS': 2, 'EMG': 2, 'AJUDANCIA': 1, 'APM': 1, 'DEIP': 1, 'DF': 1, 'PMP': 1, 'PROERD': 1
 };
 
 export const OPMS_DATA: OPMSData[] = [
@@ -98,24 +103,76 @@ export const GLOBAL_STATS: GlobalStats = {
 };
 
 export const DETAILED_PERSONNEL: PersonnelRecord[] = [
-  // APM atualizada conforme detalhamento anterior mas mantendo sincronia com novo total (63 indisp)
-  { rank: '1º TEN', name: 'ALEXANDRE FELIPE ALMEIDA', reason: 'À DISP. DE OPM ADM', observation: 'Rancho Cmt. Geral', opm: 'APM' },
+  // --- MOTIVO: OUTROS (IMPORTAÇÃO FIEL DA PLANILHA ENVIADA) ---
+  
+  // BPA (9)
+  { rank: '3º SGT', name: 'DANNYLLO ROGERS BEZERRA SILVA', reason: 'OUTROS', observation: 'P2', opm: 'BPA' },
+  { rank: '3º SGT', name: 'ELIANE RODRIGUES VIANA CAVALCANTE', reason: 'OUTROS', observation: 'CAD', opm: 'BPA' },
+  { rank: 'MAJ', name: 'FÁBIO OLIVEIRA CHAVES', reason: 'OUTROS', observation: 'SUB.CMT DA UNIDADE', opm: 'BPA' },
+  { rank: '1º TEN', name: 'IGOR IVISSON DE OLIVEIRA PASSOS', reason: 'OUTROS', observation: 'P2', opm: 'BPA' },
+  { rank: 'CB', name: 'LUCAS MENDONÇA LIMA TEIXEIRA', reason: 'OUTROS', observation: 'P2', opm: 'BPA' },
+  { rank: 'CB', name: 'LUIZ EURICO DE VASCONCELOS PEDROSA', reason: 'OUTROS', observation: 'P2', opm: 'BPA' },
+  { rank: 'CB', name: 'RICCARDO RAMOS ACIOLY', reason: 'OUTROS', observation: 'COPOM', opm: 'BPA' },
+  { rank: '2º SGT', name: 'ROGÉRIO SIQUEIRA DE ARAÚJO', reason: 'OUTROS', observation: 'MOT DO CMT DO BPA', opm: 'BPA' },
+  { rank: 'TEN CEL', name: 'SIDRAITON SOARES SANTOS', reason: 'OUTROS', observation: 'CMT DA UNIDADE', opm: 'BPA' },
+
+  // CPE (8)
+  { rank: '3º SGT', name: 'ALYSSON LIRA FERREIRA DA SILVA', reason: 'OUTROS', observation: 'À DISPOSIÇÃO DA APMSAM', opm: 'CPE' },
+  { rank: 'MAJ', name: 'ANDRÉ DIAS DOS SANTOS', reason: 'OUTROS', observation: 'À DISPOSIÇÃO DA CORREGEDORIA', opm: 'CPE' },
+  { rank: '3º SGT', name: 'CARLOS CESAR BARBOSA BATISTA FILHO', reason: 'OUTROS', observation: 'À DISPOSIÇÃO DO GRAER', opm: 'CPE' },
+  { rank: '3º SGT', name: 'DYEGO ROSTHAN DUARTE VIEIRA', reason: 'OUTROS', observation: 'À DISPOSIÇÃO DO APMSAM', opm: 'CPE' },
+  { rank: 'SD', name: 'LENIRA CALDAS LESSA NASCIMENTO', reason: 'OUTROS', observation: 'À DISPOSIÇÃO DA APMSAM', opm: 'CPE' },
+  { rank: 'CEL', name: 'MARIO ANTONIO DE OLIVEIRA XAVIER BARROS', reason: 'OUTROS', observation: 'COMANDANTE', opm: 'CPE' },
+  { rank: '2º SGT', name: 'WALDJAHYNA EMANUELA DOAS SANTOA', reason: 'OUTROS', observation: 'À DISPOSIÇÃO DA APMSAM', opm: 'CPE' },
+  { rank: '2º SGT', name: 'WELDES MARTYRES FERREIRA', reason: 'OUTROS', observation: 'À DISPOSIÇÃO DA APMSAM', opm: 'CPE' },
+
+  // DP (6)
+  { rank: '3º SGT QP', name: 'DIEGO RIDELVAN FERNANDES DOS SANTOS', reason: 'OUTROS', observation: 'Eq. Seg. Cel Bittencourt', opm: 'DP' },
+  { rank: 'CB', name: 'GUSTAVO HENRIQUE DE ALBUQUERQUE PEREIRA', reason: 'OUTROS', observation: 'MOTORISTA DO DIRETOR', opm: 'DP' },
+  { rank: '3º SGT QP', name: 'IGOR MAIA MARANHAO ARAUJO', reason: 'OUTROS', observation: 'Eq. Seg. Cel Bittencourt', opm: 'DP' },
+  { rank: '2º TEN QOA', name: 'LILIANE SANTOS REIS', reason: 'OUTROS', observation: 'CUIDADORA DA MÃE', opm: 'DP' },
+  { rank: 'SUB TEN', name: 'MARCOS ANTONIO MONTEIRO DE OLIVEIRA', reason: 'OUTROS', observation: 'Eq. Seg. Cel Bittencourt', opm: 'DP' },
+  { rank: 'SD QP', name: 'YURI SOUZA LINS QUEIROZ', reason: 'OUTROS', observation: 'A DISPOSIÇÃO DO MP', opm: 'DP' },
+
+  // CFAP (5)
+  { rank: 'SD', name: 'JACKSON OLIVEIRA SANTOS', reason: 'OUTROS', observation: 'REINTEGRADO EM ESTÁGIO', opm: 'CFAP' },
+  { rank: 'CB', name: 'LUCIANO FRANCISCO FELIX DE CARVALHO', reason: 'OUTROS', observation: 'CURADOR DE DEPENDENTE PCD', opm: 'CFAP' },
+  { rank: '3º SGT', name: 'MARCELO DOS SANTOS', reason: 'OUTROS', observation: 'RANCHO', opm: 'CFAP' },
+  { rank: '2º SGT', name: 'RAMON LUAN OLIVEIRA NOBRE', reason: 'OUTROS', observation: 'RANCHO', opm: 'CFAP' },
+  { rank: 'SD', name: 'RODRIGO FRANKLIN DA SILVA OLIVEIRA', reason: 'OUTROS', observation: 'REINTEGRADO EM ESTÁGIO', opm: 'CFAP' },
+
+  // CORREG (3)
+  { rank: '2º SGT', name: 'JOSE ADRIANO DA SILVA', reason: 'OUTROS', observation: 'À DISPOSIÇÃO DA 13 VARA CRIMINAL', opm: 'CORREG' },
+  { rank: '2º SGT', name: 'MARIA LUCÉLIA DOS SANTOS PRAXEDES', reason: 'OUTROS', observation: 'À DISPOSIÇÃO DA 13 VARA CRIMINAL', opm: 'CORREG' },
+  { rank: '2º TEN', name: 'REJANE NASCIMENTO DE ASSUNÇÃO BATISTA', reason: 'OUTROS', observation: 'CORREGEDORIA', opm: 'CORREG' },
+
+  // DLOG (3)
+  { rank: '2º Sgt', name: 'ALYSSON CESAR PAULINELLI DA SILVA CORREIA', reason: 'OUTROS', observation: 'MOTORISTA COORD. LOGÍSTICA', opm: 'DLOG' },
+  { rank: 'CB', name: 'MICHELLY DA COSTA GOMES', reason: 'OUTROS', observation: 'LACTANTE', opm: 'DLOG' },
+  { rank: 'CEL', name: 'RENILSON RODRIGUES DANTAS', reason: 'OUTROS', observation: 'COORDENADOR DE LOGÍSTICA', opm: 'DLOG' },
+
+  // CIA (2)
+  { rank: '3º SGT PM', name: 'ALYNE VANESSA FERREIRA LIMA', reason: 'OUTROS', observation: 'SENASP', opm: 'CIA' },
+  { rank: '3º SGT QPS', name: 'RICARDO TENÓRIO FERRO', reason: 'OUTROS', observation: 'RPMON', opm: 'CIA' },
+
+  // DS (2)
+  { rank: '1º SGT', name: 'JOSE AUGUSTO DE MELO GOMES', reason: 'OUTROS', observation: 'MOTORISTA AMBULÂNCIA', opm: 'DS' },
+  { rank: '2º SGT', name: 'JOSINALDO DOS SANTOS SILVA', reason: 'OUTROS', observation: 'MOTORISTA AMBULÂNCIA', opm: 'DS' },
+
+  // EMG (2)
+  { rank: 'CEL', name: 'MACIEL PANTALEAO SILVA', reason: 'OUTROS', observation: 'CHEFE DO EMG', opm: 'EMG' },
+  { rank: 'TEN CEL', name: 'SÉRGIO HENRIQUE LIMA DOS SANTOS', reason: 'OUTROS', observation: 'SUBCHEFE DO EMG', opm: 'EMG' },
+
+  // UNIDADES ÚNICAS (5)
+  { rank: 'SD', name: 'ALYSSON RHODOLFO DE SOUZA VANDERLEI', reason: 'OUTROS', observation: 'PRESO JUDICIAL', opm: 'AJUDANCIA' },
+  { rank: 'ST', name: 'JOSÉ CÍCERO DA SILVA', reason: 'OUTROS', observation: 'SERVIÇO INTERNO OPM OP.', opm: 'APM' },
+  { rank: '3º SGT', name: 'THIAGO MONTEIRO JATOBÁ', reason: 'OUTROS', observation: 'PROCESSO SEI', opm: 'DEIP' },
+  { rank: 'SUB TEN', name: 'FLAVIO ROBERTO SILVA DE ALCÂNTARA', reason: 'OUTROS', observation: 'Segurança individualizada', opm: 'DF' },
+  { rank: 'CB', name: 'LEONARDO COSTA MELO', reason: 'OUTROS', observation: 'CEDIDO À SSP', opm: 'PMP' },
+  { rank: 'CB', name: 'LUANA SILVA NERIS', reason: 'OUTROS', observation: 'AMAMENTAÇÃO', opm: 'PROERD' },
+
+  // ESCALA INTERNA (EXEMPLO)
   { rank: 'SD', name: 'HUGO TAVARES DE MELO', reason: 'ESCALA INTERNA', observation: 'SERVIÇO INTERNO OPM OP.', opm: 'APM' },
-  { rank: 'SD', name: 'LARIANNY NOBERTO DA SILVA', reason: 'GESTANTE', observation: 'GESTANTE', opm: 'APM' },
-  { rank: '3º SGT', name: 'JOSÉ BARTOLOMEU FERREIRA DA SILVA', reason: 'OUTROS', observation: 'Corneteiro Cmt Geral', opm: 'APM' },
-  { rank: 'SD', name: 'JOUBERT NASCIMENTO OLIVEIRA', reason: 'ESCALA INTERNA', observation: 'PRONTIDÃO SERVIÇOS DE MANUTENÇÃO', opm: 'APM' },
-  { rank: 'SD', name: 'VITOR HUGO DA SILVA', reason: 'ESCALA INTERNA', observation: 'PRONTIDÃO SERVIÇOS DE MANUTENÇÃO', opm: 'APM' },
-  { rank: 'SD', name: 'YASMIM MARCELA GOMES DOS SANTOS', reason: 'ESCALA INTERNA', observation: 'ESCALA ADMINISTRATIVA', opm: 'APM' },
-  { rank: 'CB', name: 'SAMUEL ELI DOS SANTOS VITAL', reason: 'À DISP. DE OPM ADM', observation: 'Rancho Cmt. Geral', opm: 'APM' },
-  
-  // BPA
-  { rank: 'MAJ', name: 'FÁBIO OLIVEIRA CHAVES', reason: 'OUTROS', observation: 'SUB.CMT DA UNIDADE', opm: 'BPA', category: 'Função/Cargo' },
-  { rank: 'TEN CEL', name: 'SIDRAITON SOARES SANTOS', reason: 'OUTROS', observation: 'CMT DA UNIDADE', opm: 'BPA', category: 'Função/Cargo' },
-  { rank: '1º TEN', name: 'IGOR IVISSON DE OLIVEIRA PASSOS', reason: 'OUTROS', observation: 'P2', opm: 'BPA', category: 'Função/Cargo' },
-  
-  // CORREG (Unidade com alta indisponibilidade na nova planilha)
-  { rank: '2º SGT', name: 'JOSE ADRIANO da SILVA', reason: 'OUTROS', observation: 'VARA CRIMINAL', opm: 'CORREG', category: 'Jurídico' },
-  { rank: 'CB', name: 'MICHELLY DA COSTA GOMES', reason: 'OUTROS', observation: 'LACTANTE', opm: 'DLOG', category: 'Social/Saúde' },
 ];
 
 export const OTHERS_OBSERVATIONS = DETAILED_PERSONNEL.filter(p => p.reason === 'OUTROS');
