@@ -2,8 +2,7 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList, Cell } from 'recharts';
 import { OPMS_DATA } from '../constants';
-import ReasonChart from './ReasonChart';
-import { AlertTriangle, TrendingDown, MousePointerClick } from 'lucide-react';
+import { TrendingDown, MousePointerClick } from 'lucide-react';
 
 interface TopUnavailableViewProps {
   onSelectOPM?: (opmName: string) => void;
@@ -24,12 +23,12 @@ const TopUnavailableView: React.FC<TopUnavailableViewProps> = ({ onSelectOPM, on
                <TrendingDown className="w-6 h-6 text-blue-600" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-slate-900">Top 8 OPMs com Maior Indisponibilidade</h2>
-              <p className="text-sm text-slate-500">Unidades que demandam maior atenção.</p>
+              <h2 className="text-lg font-black text-slate-900 uppercase tracking-tighter italic">Top 8 OPMs com Maior Indisponibilidade</h2>
+              <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest opacity-70">Unidades que demandam maior atenção operacional.</p>
             </div>
           </div>
           {onSelectOPM && (
-            <div className="flex items-center gap-2 text-xs text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full">
+            <div className="flex items-center gap-2 text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-100 uppercase">
               <MousePointerClick className="w-4 h-4" />
               Clique na barra para detalhes
             </div>
@@ -38,7 +37,7 @@ const TopUnavailableView: React.FC<TopUnavailableViewProps> = ({ onSelectOPM, on
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Chart */}
-            <div className="lg:col-span-2 h-[400px]">
+            <div className="lg:col-span-2 h-[450px]">
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart 
                       data={top8Data} 
@@ -51,22 +50,24 @@ const TopUnavailableView: React.FC<TopUnavailableViewProps> = ({ onSelectOPM, on
                             dataKey="name" 
                             type="category" 
                             width={100} 
-                            tick={{fontSize: 11, fill: '#475569', fontWeight: 500}} 
+                            tick={{fontSize: 10, fill: '#1e293b', fontWeight: 900}} 
                             interval={0}
+                            axisLine={false}
+                            tickLine={false}
                         />
                         <Tooltip 
                             cursor={{fill: '#f1f5f9'}}
-                            contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                            contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)', fontWeight: 'bold' }}
                         />
                         <Bar 
                           dataKey="unavailable" 
                           name="Indisponíveis" 
-                          radius={[0, 4, 4, 0]} 
+                          radius={[0, 6, 6, 0]} 
                           barSize={32}
                           onClick={(data) => onSelectOPM && onSelectOPM(data.name)}
                           className="cursor-pointer"
                         >
-                            <LabelList dataKey="unavailable" position="right" fill="#64748b" fontSize={12} fontWeight="bold" />
+                            <LabelList dataKey="unavailable" position="right" fill="#1e293b" fontSize={11} fontWeight="900" />
                             {top8Data.map((entry, index) => (
                               <Cell 
                                 key={`cell-${index}`} 
@@ -79,11 +80,11 @@ const TopUnavailableView: React.FC<TopUnavailableViewProps> = ({ onSelectOPM, on
                 </ResponsiveContainer>
             </div>
 
-            {/* List/Table Mini */}
-            <div className="bg-slate-50 rounded-lg p-4 h-[400px] overflow-y-auto border border-slate-200">
-                <h3 className="font-semibold text-slate-800 mb-3 text-sm uppercase tracking-wide flex justify-between items-center">
-                    <span>Ranking Detalhado</span>
-                    <span className="text-xs text-slate-400 font-normal">Total / Indisp. / %</span>
+            {/* List/Ranking */}
+            <div className="bg-slate-50 rounded-2xl p-4 h-[450px] overflow-y-auto border border-slate-200">
+                <h3 className="font-black text-slate-800 mb-3 text-[10px] uppercase tracking-widest flex justify-between items-center border-b border-slate-200 pb-2">
+                    <span>Ranking Absoluto</span>
+                    <span className="text-[9px] text-slate-400 font-bold uppercase tracking-normal">Total / Indisp. / %</span>
                 </h3>
                 <div className="space-y-3">
                     {top8Data.map((item, idx) => {
@@ -91,24 +92,24 @@ const TopUnavailableView: React.FC<TopUnavailableViewProps> = ({ onSelectOPM, on
                          return (
                             <div 
                               key={item.name} 
-                              className="flex flex-col p-3 bg-white rounded shadow-sm border border-slate-100 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer group"
+                              className="flex flex-col p-3 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer group"
                               onClick={() => onSelectOPM && onSelectOPM(item.name)}
                             >
                                 <div className="flex justify-between items-center mb-2">
                                     <div className="flex items-center">
-                                        <span className={`flex items-center justify-center w-5 h-5 rounded-full text-[10px] font-bold mr-2 ${idx < 3 ? 'bg-blue-100 text-blue-700' : 'bg-slate-200 text-slate-600'}`}>
+                                        <span className={`flex items-center justify-center w-5 h-5 rounded-full text-[10px] font-black mr-2 ${idx < 3 ? 'bg-blue-600 text-white shadow-sm shadow-blue-200' : 'bg-slate-200 text-slate-600'}`}>
                                             {idx + 1}
                                         </span>
-                                        <span className="font-semibold text-slate-800 text-sm group-hover:text-blue-600 transition-colors">{item.name}</span>
+                                        <span className="font-black text-slate-800 text-xs uppercase tracking-tight group-hover:text-blue-700 transition-colors">{item.name}</span>
                                     </div>
-                                    <div className="font-bold text-blue-600 text-lg">{item.unavailable}</div>
+                                    <div className="font-black text-blue-600 text-lg">{item.unavailable}</div>
                                 </div>
-                                <div className="w-full bg-slate-100 rounded-full h-1.5 mb-2">
-                                    <div className="bg-blue-500 h-1.5 rounded-full" style={{width: `${percent}%`}}></div>
+                                <div className="w-full bg-slate-100 rounded-full h-1.5 mb-2 overflow-hidden">
+                                    <div className="bg-blue-600 h-1.5 rounded-full" style={{width: `${percent}%`}}></div>
                                 </div>
-                                <div className="flex justify-between text-xs text-slate-400">
-                                    <span>Total: {item.total}</span>
-                                    <span>{percent}% comprometido</span>
+                                <div className="flex justify-between text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                                    <span>T: {item.total}</span>
+                                    <span className="text-blue-500">{percent}% Comprom.</span>
                                 </div>
                             </div>
                          );
@@ -116,27 +117,6 @@ const TopUnavailableView: React.FC<TopUnavailableViewProps> = ({ onSelectOPM, on
                 </div>
             </div>
         </div>
-      </div>
-
-      {/* Context Section */}
-      <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
-          <div className="flex items-center justify-between mb-2">
-             <div className="flex items-center gap-2">
-                <AlertTriangle className="w-5 h-5 text-indigo-500" />
-                <h3 className="font-bold text-slate-800">Contexto: Distribuição de Motivos (Corporação)</h3>
-             </div>
-             {onSelectReason && (
-               <div className="flex items-center gap-2 text-xs text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-100">
-                 <MousePointerClick className="w-4 h-4" />
-                 Clique nas barras para detalhar OPMs deste motivo
-               </div>
-             )}
-          </div>
-          <p className="text-sm text-slate-500 mb-6 max-w-3xl">
-            O gráfico abaixo apresenta os principais motivos de indisponibilidade em toda a corporação. 
-            Embora cada OPM tenha sua particularidade, estes são os fatores predominantes que impactam as unidades listadas acima.
-          </p>
-          <ReasonChart onSelectReason={onSelectReason} />
       </div>
     </div>
   );

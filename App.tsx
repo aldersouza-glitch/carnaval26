@@ -71,62 +71,62 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-white pb-10 font-sans selection:bg-blue-100">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <header className="bg-white shadow-md border-b-2 border-slate-100 sticky top-0 z-30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-blue-600 p-2 rounded-lg shadow-md shadow-blue-200">
-               <Shield className="w-6 h-6 text-white" />
+            <div className="bg-blue-700 p-2.5 rounded-xl shadow-lg shadow-blue-200">
+               <Shield className="w-7 h-7 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-black text-slate-900 leading-tight uppercase tracking-tighter italic">Efetivo<span className="text-blue-600">Pro</span></h1>
-              <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest opacity-70">Monitoramento em Tempo Real</p>
+              <h1 className="text-2xl font-black text-slate-900 leading-tight uppercase tracking-tighter italic">Efetivo<span className="text-blue-700">Pro</span></h1>
+              <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest opacity-80">Monitoramento de Prontidão</p>
             </div>
           </div>
           
-          {/* Tab Navigation */}
-          <nav className="flex space-x-1 bg-slate-100 p-1 rounded-xl overflow-x-auto">
+          {/* Tab Navigation - Intensificada */}
+          <nav className="flex space-x-2 bg-slate-200 p-1.5 rounded-2xl overflow-x-auto shadow-inner">
             <button
               onClick={() => setActiveTab('dashboard')}
-              className={`flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest rounded-lg transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-6 py-3 text-[13px] font-black uppercase tracking-tight rounded-xl transition-all whitespace-nowrap border-b-2 ${
                 activeTab === 'dashboard' 
-                  ? 'bg-white text-blue-700 shadow-sm ring-1 ring-slate-200' 
-                  : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200'
+                  ? 'bg-white text-blue-800 shadow-lg border-blue-600' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-300 border-transparent'
               }`}
             >
-              <LayoutDashboard className="w-4 h-4" />
+              <LayoutDashboard className="w-4 h-4 stroke-[3px]" />
               Geral
             </button>
             <button
               onClick={() => setActiveTab('top-unavailable')}
-              className={`flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest rounded-lg transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-6 py-3 text-[13px] font-black uppercase tracking-tight rounded-xl transition-all whitespace-nowrap border-b-2 ${
                 ['top-unavailable', 'opm-details', 'opm-reason-personnel'].includes(activeTab)
-                  ? 'bg-white text-blue-700 shadow-sm ring-1 ring-slate-200' 
-                  : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200'
+                  ? 'bg-white text-blue-800 shadow-lg border-blue-600' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-300 border-transparent'
               }`}
             >
-              <TrendingDown className="w-4 h-4" />
+              <TrendingDown className="w-4 h-4 stroke-[3px]" />
               Unidades
             </button>
             <button
               onClick={() => setActiveTab('reasons')}
-              className={`flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest rounded-lg transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-6 py-3 text-[13px] font-black uppercase tracking-tight rounded-xl transition-all whitespace-nowrap border-b-2 ${
                 ['reasons', 'reason-details'].includes(activeTab)
-                  ? 'bg-white text-blue-700 shadow-sm ring-1 ring-slate-200' 
-                  : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200'
+                  ? 'bg-white text-blue-800 shadow-lg border-blue-600' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-300 border-transparent'
               }`}
             >
-              <FileWarning className="w-4 h-4" />
+              <FileWarning className="w-4 h-4 stroke-[3px]" />
               Motivos
             </button>
             <button
               onClick={() => setActiveTab('others')}
-              className={`flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest rounded-lg transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-6 py-3 text-[13px] font-black uppercase tracking-tight rounded-xl transition-all whitespace-nowrap border-b-2 ${
                 ['others', 'observation-details'].includes(activeTab)
-                  ? 'bg-red-600 text-white shadow-lg shadow-red-100 ring-1 ring-red-700' 
-                  : 'text-slate-500 hover:text-red-700 hover:bg-red-50'
+                  ? 'bg-red-700 text-white shadow-xl shadow-red-200 border-red-900' 
+                  : 'text-slate-600 hover:text-red-800 hover:bg-red-50 border-transparent'
               }`}
             >
-              <HelpCircle className="w-4 h-4" />
+              <HelpCircle className="w-4 h-4 stroke-[3px]" />
               Outros
             </button>
           </nav>
