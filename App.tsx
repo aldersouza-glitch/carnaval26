@@ -45,8 +45,7 @@ const App: React.FC = () => {
 
   const handleSelectObservation = (obsName: string) => {
     setSelectedObservation(obsName);
-    setActiveTab('observation-details');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setActiveTab('others'); // No caso de detalhe nominal de observação, mantemos em outros
   };
 
   const handleBackToTopUnavailable = () => {
@@ -71,7 +70,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-white pb-10 font-sans selection:bg-blue-100">
       {/* Header */}
-      <header className="bg-white shadow-md border-b-2 border-slate-100 sticky top-0 z-30">
+      <header className="bg-white shadow-md border-b-4 border-slate-100 sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-blue-700 p-2.5 rounded-xl shadow-lg shadow-blue-200">
@@ -83,50 +82,50 @@ const App: React.FC = () => {
             </div>
           </div>
           
-          {/* Tab Navigation - Intensificada */}
+          {/* Tab Navigation - Extremamente Negrito (font-black) */}
           <nav className="flex space-x-2 bg-slate-200 p-1.5 rounded-2xl overflow-x-auto shadow-inner">
             <button
               onClick={() => setActiveTab('dashboard')}
-              className={`flex items-center gap-2 px-6 py-3 text-[13px] font-black uppercase tracking-tight rounded-xl transition-all whitespace-nowrap border-b-2 ${
+              className={`flex items-center gap-2 px-6 py-3 text-[14px] font-black uppercase tracking-tighter rounded-xl transition-all whitespace-nowrap border-b-4 ${
                 activeTab === 'dashboard' 
-                  ? 'bg-white text-blue-800 shadow-lg border-blue-600' 
+                  ? 'bg-white text-blue-800 shadow-xl border-blue-600 scale-[1.05]' 
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-300 border-transparent'
               }`}
             >
-              <LayoutDashboard className="w-4 h-4 stroke-[3px]" />
+              <LayoutDashboard className="w-5 h-5 stroke-[4px]" />
               Geral
             </button>
             <button
               onClick={() => setActiveTab('top-unavailable')}
-              className={`flex items-center gap-2 px-6 py-3 text-[13px] font-black uppercase tracking-tight rounded-xl transition-all whitespace-nowrap border-b-2 ${
+              className={`flex items-center gap-2 px-6 py-3 text-[14px] font-black uppercase tracking-tighter rounded-xl transition-all whitespace-nowrap border-b-4 ${
                 ['top-unavailable', 'opm-details', 'opm-reason-personnel'].includes(activeTab)
-                  ? 'bg-white text-blue-800 shadow-lg border-blue-600' 
+                  ? 'bg-white text-blue-800 shadow-xl border-blue-600 scale-[1.05]' 
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-300 border-transparent'
               }`}
             >
-              <TrendingDown className="w-4 h-4 stroke-[3px]" />
+              <TrendingDown className="w-5 h-5 stroke-[4px]" />
               Unidades
             </button>
             <button
               onClick={() => setActiveTab('reasons')}
-              className={`flex items-center gap-2 px-6 py-3 text-[13px] font-black uppercase tracking-tight rounded-xl transition-all whitespace-nowrap border-b-2 ${
+              className={`flex items-center gap-2 px-6 py-3 text-[14px] font-black uppercase tracking-tighter rounded-xl transition-all whitespace-nowrap border-b-4 ${
                 ['reasons', 'reason-details'].includes(activeTab)
-                  ? 'bg-white text-blue-800 shadow-lg border-blue-600' 
+                  ? 'bg-white text-blue-800 shadow-xl border-blue-600 scale-[1.05]' 
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-300 border-transparent'
               }`}
             >
-              <FileWarning className="w-4 h-4 stroke-[3px]" />
+              <FileWarning className="w-5 h-5 stroke-[4px]" />
               Motivos
             </button>
             <button
               onClick={() => setActiveTab('others')}
-              className={`flex items-center gap-2 px-6 py-3 text-[13px] font-black uppercase tracking-tight rounded-xl transition-all whitespace-nowrap border-b-2 ${
+              className={`flex items-center gap-2 px-6 py-3 text-[14px] font-black uppercase tracking-tighter rounded-xl transition-all whitespace-nowrap border-b-4 ${
                 ['others', 'observation-details'].includes(activeTab)
-                  ? 'bg-red-700 text-white shadow-xl shadow-red-200 border-red-900' 
-                  : 'text-slate-600 hover:text-red-800 hover:bg-red-50 border-transparent'
+                  ? 'bg-red-700 text-white shadow-2xl shadow-red-200 border-red-900 scale-[1.05]' 
+                  : 'text-slate-700 hover:text-red-800 hover:bg-red-50 border-transparent'
               }`}
             >
-              <HelpCircle className="w-4 h-4 stroke-[3px]" />
+              <HelpCircle className="w-5 h-5 stroke-[4px]" />
               Outros
             </button>
           </nav>
@@ -219,11 +218,7 @@ const App: React.FC = () => {
         )}
 
         {activeTab === 'others' && (
-          <OthersBreakdownView onSelectObservation={handleSelectObservation} />
-        )}
-
-        {activeTab === 'observation-details' && selectedObservation && (
-          <ObservationDetailsView observationName={selectedObservation} onBack={handleBackToOthers} />
+          <OthersBreakdownView />
         )}
       </main>
     </div>
