@@ -37,10 +37,11 @@ export interface CommandRankData {
   total: number;
 }
 
-// Interface para detalhar os itens dentro da categoria 'OUTROS'
+// Interface para detalhar nominalmente os itens dentro da categoria 'OUTROS'
 export interface OtherObservation {
+  rank: string;
+  name: string;
   category: string;
   observation: string;
   opm: string;
-  count: number;
 }
